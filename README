@@ -1,12 +1,16 @@
 BetterFormBuilder
 =================
 
+todo
+* i18n auto support
+
 features
 
 * <div class="formWithError"> replaced to <span class="form_error">
 * auto set class for input fields
 * add error_list helper
 * add has_error? helper
+* add error_message helper
 * error_list only show the error message without field name for custom error messages
 
 Example
@@ -20,12 +24,14 @@ Example
     <%= f.error_list :attribute1, :attribute2 %>
     return error only from :attribute1, :attribute2. this aware of sorting
     
-    <% "Error" if f.has_error %>
+    <%= "Error" if f.has_error %>
     show "Error" on error
     
-    <% "Error" if f.has_error :attribute1, :attribute2 %>
+    <%= "Error" if f.has_error :attribute1, :attribute2 %>
     show "Error" only if :attribute1, :attribute2 has an error
 
+    <%= f.error_message "Error" %>
+    ouput error in p-tag with class form_error
 
 <% end %>
 
