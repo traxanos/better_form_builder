@@ -1,13 +1,32 @@
 BetterFormBuilder
 =================
 
-Todo
+features
 
+* <div class="formWithError"> replaced to <span class="form_error">
+* auto set class for input fields
+* add error_list helper
+* add has_error? helper
+* error_list only show the error message without field name for custom error messages
 
 Example
 =======
 
-Todo
+<% form_for object do |f| %>
 
+    <%= f.error_list %>
+    return all errors as ul list with class 'form_error'
+    
+    <%= f.error_list :attribute1, :attribute2 %>
+    return error only from :attribute1, :attribute2. this aware of sorting
+    
+    <% "Error" if f.has_error %>
+    show "Error" on error
+    
+    <% "Error" if f.has_error :attribute1, :attribute2 %>
+    show "Error" only if :attribute1, :attribute2 has an error
+
+
+<% end %>
 
 Copyright (c) 2009 Marco Scholl, released under the MIT license
