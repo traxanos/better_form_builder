@@ -31,7 +31,22 @@ Example
     show "Error" only if :attribute1, :attribute2 has an error
 
     <%= f.error_message "Error" %>
-    ouput error in p-tag with class form_error
+    ouput Error in p-tag with class form_error
+
+    <%= f.text_field :attr %>
+    the input field get class="text_field"
+    
+    <%= f.text_field :attr, :class => 'own' %>
+    the input field get class="text_field own"
+
+    <%= f.password_field :attr %>
+    the input field get class="password_field"
+    
+    <%= f.check_box :attr %>
+    the input field get class="check_box"
+    
+    <%= f.radio_button :attr %>
+    the input field get class="radio_button"
 
 <% end %>
 
