@@ -1,9 +1,6 @@
 BetterFormBuilder
 =================
 
-todo
-* i18n auto support
-
 features
 
 * <div class="formWithError"> replaced to <span class="form_error">
