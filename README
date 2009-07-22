@@ -11,7 +11,7 @@ features
 * add error_list helper
 * add has_error? helper
 * add error_message helper
-* error_list only show the error message without field name for custom error messages
+* error_list show error message without attribute if the first char the ^
 
 Example
 =======

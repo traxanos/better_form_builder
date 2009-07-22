@@ -1,5 +1,21 @@
 require 'action_view/helpers/tag_helper'
 
+module ActiveRecord
+  class Errors
+    def messages_for(attribute)
+      errors = @errors[attribute.to_s]
+      return nil if errors.nil?
+      errors.collect do |error|
+        if error.at(1) == '^'
+          error[1..-1]
+        else
+          @base.class.human_attribute_name(attribute.to_s) + " " + error
+        end
+      end
+    end
+  end
+end
+
 module ActionView
   class Base
     @@field_error_proc = Proc.new{ |html_tag, instance| "<span class=\"form_error\">#{html_tag}</span>" }
@@ -127,7 +143,10 @@ module ActionView
             html = String.new
             html << "<ul class=\"form_error\">"
             errors.each do |attribute|
-              html << "<li>" + @object.errors.on(attribute.to_sym) + "</li>"
+              attribute_errors = @object.errors.messages_for(attribute)
+              attribute_errors.each do |error|
+                html << "<li>" + error + "</li>"
+              end
             end
             html << "</ul>"
           end
