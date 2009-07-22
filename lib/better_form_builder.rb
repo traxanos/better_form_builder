@@ -27,9 +27,16 @@ module ActionView
   module Helpers
     
     module FormHelper
+      
+      alias_method :label_without_i18n, :label
+      def label(object_name, method, text = nil, options = {})
+        text = object_name.classify.constantize.human_attribute_name(method.to_s) if text.nil?
+        label_without_i18n(object_name, method, text, options)
+      end
+      
       alias_method :text_field_without_class, :text_field
       def text_field(object_name, method, options = {})
-        text_field_without_class(object_name, method,merge_class_option('text_field', options))
+        text_field_without_class(object_name, method, merge_class_option('text_field', options))
       end
       
       alias_method :password_field_without_class, :password_field

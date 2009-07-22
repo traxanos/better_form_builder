@@ -9,6 +9,7 @@ features
 * add has_error? helper
 * add error_message helper
 * error_list show error message without attribute if the first char the ^
+* add label tag helper with i18n support based on Model.human_attributte_name
 
 Example
 =======
@@ -44,6 +45,9 @@ Example
     
     <%= f.radio_button :attr %>
     the input field get class="radio_button"
+
+    <%= f.label :email %>
+    use human_attributte_name with i18n support
 
 <% end %>
 
