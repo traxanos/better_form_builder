@@ -5,13 +5,8 @@ module ActiveRecord
     def messages_for(attribute)
       errors = @errors[attribute.to_s]
       return nil if errors.nil?
-      errors.collect do |error|
-        if error.at(1) == '^'
-          error[1..-1]
-        else
-          @base.class.human_attribute_name(attribute.to_s) + " " + error
-        end
-      end
+      
+      errors.collect { |error| (error.at(0) == '^') ? error.slice(1..-1) : "#{@base.class.human_attribute_name(attribute.to_s)} #{error}" }
     end
   end
 end
