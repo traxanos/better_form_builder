@@ -145,6 +145,10 @@ module ActionView
       end
       
       def error_list(*attributes)
+        options = attributes.extract_options!
+        options.reverse_merge!({:first_per_attribute => true})
+        
+        
         raise ArgumentError unless attributes.is_a? Array or attributes.nil?
         
         errors = error_attributes(*attributes)
@@ -154,6 +158,9 @@ module ActionView
             html << "<ul class=\"form_error\">"
             errors.each do |attribute|
               attribute_errors = @object.errors.messages_for(attribute)
+              
+              attribute_errors = attribute_errors.first.to_a if options[:first_per_attribute]
+              
               attribute_errors.each do |error|
                 html << "<li>" + error + "</li>"
               end

@@ -1,15 +1,21 @@
 BetterFormBuilder
 =================
 
+
+
 features
 
 * <div class="formWithError"> replaced to <span class="form_error">
 * auto set class for input fields
 * add error_list helper
+* error_list helper display only the first error message of any attributes
+* show all error messages of attributes use :first_per_attribute option
 * add has_error? helper
 * add error_message helper
 * error_list show error message without attribute if the first char the ^
-* add label tag helper with i18n support based on Model.human_attributte_name
+* label tag helper with i18n support based on Model.human_attributte_name
+
+
 
 Example
 =======
@@ -21,6 +27,10 @@ Example
     
     <%= f.error_list :attribute1, :attribute2 %>
     return error only from :attribute1, :attribute2. this aware of sorting
+
+    <%= f.error_list :first_per_attribute => false %>
+    return all error of an attribute
+
     
     <%= "Error" if f.has_error %>
     show "Error" on error
