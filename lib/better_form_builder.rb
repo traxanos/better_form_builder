@@ -137,10 +137,12 @@ module ActionView
         temp = @object.errors.each{ |attribute,msg| false }
         errors = temp.keys
         
-        if attributes.nil? or attributes.first.blank?
+        if errors.nil?
+          nil
+        elsif attributes.nil? or attributes.first.blank?
           errors
         else
-          errors & attributes
+          attributes & errors
         end
       end
       
@@ -154,7 +156,7 @@ module ActionView
           unless errors.empty?
             html = String.new
             html << "<ul class=\"form_error\">"
-            attributes.each do |attribute|
+            errors.each do |attribute|
               attribute_errors = @object.errors.messages_for(attribute)
               
               attribute_errors = attribute_errors.first.to_a if options[:first_per_attribute]
