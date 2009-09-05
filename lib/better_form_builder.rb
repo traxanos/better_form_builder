@@ -7,12 +7,12 @@ module ActiveRecord
       return nil if errors.nil?
       
       errors.collect do |error|
-        if error.at(0) == '^'
-          error.slice(1..-1)
+        if error.to_s.at(0) == '^'
+          error.to_s.slice(1..-1)
         elsif attribute.to_s == 'base'
-          error
+          error.to_s
         else
-          "#{@base.class.human_attribute_name(attribute.to_s)} #{error}"
+          "#{@base.class.human_attribute_name(attribute.to_s)} #{error.to_s}"
         end
       end
     end
