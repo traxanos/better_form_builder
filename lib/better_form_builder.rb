@@ -133,10 +133,7 @@ module ActionView
       def error_attributes(*attributes)
         raise ArgumentError unless attributes.is_a? Array or attributes.nil?
         attributes = attributes.collect { |attribute| attribute.to_s }
-        # i don't no why this work how i need :D
-        temp = @object.errors.each{ |attribute,msg| false }
-        errors = temp.keys
-        
+        errors = @object.errors.collect{ |attribute,msg| attribute }
         if errors.nil?
           nil
         elsif attributes.nil? or attributes.first.blank?
@@ -149,8 +146,7 @@ module ActionView
       def error_list(*attributes)
         options = attributes.extract_options!
         options.reverse_merge!({:first_per_attribute => true})
-        raise ArgumentError unless attributes.is_a? Array or attributes.nil?
-        
+        raise ArgumentError unless attributes.is_a? Array or attributes.nil?        
         errors = error_attributes(*attributes)
         unless errors.nil? 
           unless errors.empty?
