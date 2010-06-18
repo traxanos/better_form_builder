@@ -30,7 +30,7 @@ module ActionView
       
       alias_method :label_without_i18n, :label
       def label(object_name, method, text = nil, options = {})
-        text = object_name.classify.constantize.human_attribute_name(method.to_s) if text.nil?
+        text = object_name.to_s.classify.constantize.human_attribute_name(method.to_s) if text.nil?
         label_without_i18n(object_name, method, text, options)
       end
       
