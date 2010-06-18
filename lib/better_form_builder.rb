@@ -134,6 +134,7 @@ module ActionView
         raise ArgumentError unless attributes.is_a? Array or attributes.nil?
         attributes = attributes.collect { |attribute| attribute.to_s }
         errors = @object.errors.collect{ |attribute,msg| attribute }
+        errors.uniq!
         if errors.nil?
           nil
         elsif attributes.nil? or attributes.first.blank?
