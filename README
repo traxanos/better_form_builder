@@ -1,7 +1,7 @@
 BetterFormBuilder
 =================
 
-
+Support only for Rails 3
 
 features
 
@@ -13,7 +13,6 @@ features
 * add has_error? helper
 * add error_message helper
 * error_list show error message without attribute if the first char the ^
-* label tag helper with i18n support based on Model.human_attributte_name
 
 
 
